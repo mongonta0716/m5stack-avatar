@@ -4,6 +4,10 @@
 
 #include "Avatar.h"
 
+#ifndef xTaskCreateUniversal
+#define xTaskCreateUniversal xTaskCreatePinnedToCore
+#endif
+
 #ifndef PI
 #define PI 3.1415926535897932384626433832795
 #endif
@@ -27,6 +31,9 @@ long random(long howbig) { return std::rand() % howbig; }
 #else
 #define TaskResult() vTaskDelete(NULL)
 #define TaskDelay(ms) vTaskDelay(ms / portTICK_PERIOD_MS)
+#ifndef random
+long random(long howbig) { return std::rand() % howbig; }
+#endif
 #endif
 
 // TODO(meganetaaan): make read-only
@@ -102,12 +109,12 @@ Avatar::Avatar(Face *face)
       _isDrawing{false},
       expression{Expression::Neutral},
       breath{0},
-      leftEyeOpenRatio_{1.0f},
-      leftGazeH_{1.0f},
-      leftGazeV_{1.0f},
       rightEyeOpenRatio_{1.0f},
-      rightGazeH_{1.0f},
       rightGazeV_{1.0f},
+      rightGazeH_{1.0f},
+      leftEyeOpenRatio_{1.0f},
+      leftGazeV_{1.0f},
+      leftGazeH_{1.0f},
       isAutoBlink_{true},
       mouthOpenRatio{0},
       rotation{0},
@@ -115,7 +122,9 @@ Avatar::Avatar(Face *face)
       palette{ColorPalette()},
       speechText{""},
       colorDepth{1},
-      batteryIconStatus{BatteryIconStatus::invisible} {}
+      batteryIconStatus{BatteryIconStatus::invisible},
+      batteryLevel{0},
+      speechFont{nullptr} {}
 
 Avatar::~Avatar() { delete face; }
 

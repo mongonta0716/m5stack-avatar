@@ -161,6 +161,12 @@ void GirlyEye::drawEyeLid(M5Canvas *canvas) {
 
 void GirlyEye::overwriteOpenRatio() {
     switch (expression_) {
+        case Expression::Happy:
+        case Expression::Angry:
+        case Expression::Sad:
+        case Expression::Neutral:
+            break;
+
         case Expression::Doubt:
             open_ratio_ = 0.6f;
             break;
@@ -269,6 +275,12 @@ void PinkDemonEye::drawEyeLid(M5Canvas *canvas) {
 
 void PinkDemonEye::overwriteOpenRatio() {
     switch (expression_) {
+        case Expression::Happy:
+        case Expression::Angry:
+        case Expression::Sad:
+        case Expression::Neutral:
+            break;
+
         case Expression::Doubt:
             open_ratio_ = 0.6f;
             break;

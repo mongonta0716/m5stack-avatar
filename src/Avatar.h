@@ -6,6 +6,11 @@
 #define AVATAR_H_
 #include <M5GFX.h>
 
+#ifndef SDL_h_
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#endif
+
 #include "ColorPalette.h"
 #include "Face.h"
 
