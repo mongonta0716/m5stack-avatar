@@ -4,4 +4,4 @@ FILE(GLOB COMPONENT_SRCS
 # Make Avatar component available to ESP-IDF builds.
 idf_component_register(SRCS ${COMPONENT_SRCS}
                        INCLUDE_DIRS src
-                       REQUIRES M5Unified)
+                       REQUIRES m5unified)
